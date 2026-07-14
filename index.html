@@ -257,6 +257,24 @@ nav{
 .badge-soon{font-size:12.5px;color:var(--ink-faint);border:1px dashed var(--line-2);border-radius:999px;padding:3px 10px}
 
 /* ====================================================== */
+/*  ATLAS / FIELD NOTES — theme-reactive photo strip       */
+/* ====================================================== */
+.atlas-intro{font-family:'Boska';font-weight:500;font-size:clamp(24px,4vw,36px);letter-spacing:-.01em;margin-bottom:10px}
+.atlas-sub{color:var(--ink-soft);max-width:58ch;margin-bottom:28px;font-size:16px}
+.atlas-strip{display:flex;gap:16px;overflow-x:auto;padding-bottom:16px;scroll-snap-type:x proximity;scrollbar-width:thin;scrollbar-color:var(--line-2) transparent}
+.atlas-strip::-webkit-scrollbar{height:6px}
+.atlas-strip::-webkit-scrollbar-thumb{background:var(--line-2);border-radius:99px}
+.atlas-strip::-webkit-scrollbar-track{background:transparent}
+.atlas-strip figure{flex:0 0 auto;margin:0;scroll-snap-align:start}
+.atlas-strip img{height:clamp(220px,30vw,320px);width:auto;border-radius:12px;border:1px solid var(--line);display:block}
+.atlas-strip figcaption{font-family:ui-monospace,Menlo,monospace;font-size:12px;color:var(--ink-faint);margin-top:9px;letter-spacing:.05em}
+.atlas-note{font-size:13px;color:var(--ink-faint);margin-top:14px}
+/* theme swap: paired photos change with the lights; unpaired keep their hour */
+.atlas-strip img.ph-day{display:none}
+[data-theme="day"] .atlas-strip img.ph-day{display:block}
+[data-theme="day"] .atlas-strip img.ph-night.swap{display:none}
+
+/* ====================================================== */
 /*  VIDEOS                                                 */
 /* ====================================================== */
 .video-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
@@ -369,12 +387,32 @@ footer{border-top:1px solid var(--line);padding-block:34px;color:var(--ink-faint
 
 <!-- ===================== WORK ===================== -->
 <main id="work" class="wrap section">
-  <div class="eyebrow reveal"><span class="num">02</span> Selected work <span class="bar"></span> launching soon</div>
+  <div class="eyebrow reveal"><span class="num">02</span> Selected work <span class="bar"></span> 1 live · more landing soon</div>
 
-  <div class="panel reveal" style="text-align:center;padding:56px 28px">
-    <h3 style="font-size:clamp(24px,4vw,34px);margin-bottom:12px">First demos <span class="accent-text" style="font-style:italic">landing shortly.</span></h3>
-    <p class="soft" style="max-width:52ch;margin-inline:auto">Ten working GenAI systems across model risk, healthcare claims, legal extraction and causal inference — being deployed one by one. The first two, an SR 11-7 model-validation cockpit and a seeded-flaw bank model estate, are up next.</p>
-  </div>
+  <!-- ---------- 01 Financial Services & Risk (AdvisorDesk LIVE) ---------- -->
+  <section class="domain reveal">
+    <div class="domain-head">
+      <span class="idx">01</span><h3>Financial Services &amp; Risk</h3>
+      <span class="tag">agentic · governance · guardrails</span>
+    </div>
+    <div class="cards">
+      <!-- AdvisorDesk — FEATURED + LIVE -->
+      <article class="card feat">
+        <div class="card-thumb">AdvisorDesk</div>
+        <div class="card-body">
+          <div class="chips"><span class="chip cap">Agentic</span><span class="chip cap">Multi-agent</span><span class="chip">Guardrails</span><span class="chip">MCP</span></div>
+          <h4>AdvisorDesk</h4>
+          <p class="desc">A multi-agent copilot for wealth relationship managers: a supervisor delegates to intake, research and debrief agents over MCP tools, while a compliance agent holds veto power. Ships with a PII firewall, a release gate, and a red-team panel — and runs keyless with deterministic fallbacks.</p>
+          <div class="card-foot">
+            <span class="badge-live"><span class="d"></span>Live</span>
+            <a class="card-link" href="https://advisordesk.onrender.com/" target="_blank" rel="noopener">Open demo <span class="arw">↗</span></a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <p class="soft reveal" style="max-width:56ch;margin-top:36px">More landing soon — an SR 11-7 model-validation cockpit and a seeded-flaw bank model estate are up next, across model risk, healthcare claims, legal extraction and causal inference.</p>
 
   <!--
   HIDDEN FOR LAUNCH: the 10 demo cards (4 domain sections) live below, unchanged.
@@ -499,9 +537,67 @@ footer{border-top:1px solid var(--line);padding-block:34px;color:var(--ink-faint
 
 </main>
 
+<!-- ===================== ATLAS / FIELD NOTES ===================== -->
+<section id="atlas" class="wrap section">
+  <div class="eyebrow reveal"><span class="num">03</span> Field notes <span class="bar"></span> photographs my own</div>
+  <div class="reveal">
+    <h3 class="atlas-intro">Places I've <span class="accent-text" style="font-style:italic">stood.</span></h3>
+    <p class="atlas-sub">Shot on my phone, graded into this site's palette. The landscapes switch with the lights — flip the theme and watch them change hour.</p>
+    <div class="atlas-strip">
+      <!-- EDIT: captions — replace with place names / coordinates as you like -->
+      <figure>
+        <img class="ph-night swap" src="assets/atlas/atlas-11-night.jpg" alt="Cove framed by a mossy cypress branch" loading="lazy" />
+        <img class="ph-day" src="assets/atlas/atlas-11-day.jpg" alt="Cove framed by a mossy cypress branch" loading="lazy" />
+        <figcaption>01 — the cove</figcaption>
+      </figure>
+      <figure>
+        <img class="ph-night swap" src="assets/atlas/atlas-02-night.jpg" alt="Waves breaking over dark rocks" loading="lazy" />
+        <img class="ph-day" src="assets/atlas/atlas-02-day.jpg" alt="Waves breaking over dark rocks" loading="lazy" />
+        <figcaption>02 — wave study</figcaption>
+      </figure>
+      <figure>
+        <img class="ph-night swap" src="assets/atlas/atlas-03-night.jpg" alt="Stone bridge over a waterfall" loading="lazy" />
+        <img class="ph-day" src="assets/atlas/atlas-03-day.jpg" alt="Stone bridge over a waterfall" loading="lazy" />
+        <figcaption>03 — the bridge over the falls</figcaption>
+      </figure>
+      <figure>
+        <img class="ph-night swap" src="assets/atlas/atlas-06-night.jpg" alt="Lichen-covered branches in low sun" loading="lazy" />
+        <img class="ph-day" src="assets/atlas/atlas-06-day.jpg" alt="Lichen-covered branches in low sun" loading="lazy" />
+        <figcaption>04 — lichen, rim-lit</figcaption>
+      </figure>
+      <figure>
+        <img class="ph-night swap" src="assets/atlas/atlas-07-night.jpg" alt="Stone colonnade in golden hour light" loading="lazy" />
+        <img class="ph-day" src="assets/atlas/atlas-07-day.jpg" alt="Stone colonnade in golden hour light" loading="lazy" />
+        <figcaption>05 — colonnade, golden hour</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/atlas/atlas-09-night.jpg" alt="Moon glowing through tree canopy" loading="lazy" />
+        <figcaption>06 — moon through the canopy</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/atlas/atlas-12-night.jpg" alt="Dinner table at dusk under open sky" loading="lazy" />
+        <figcaption>07 — dinner after dark</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/atlas/atlas-10-day.jpg" alt="Marigold-covered Day of the Dead altar" loading="lazy" />
+        <figcaption>08 — marigolds &amp; remembrance</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/atlas/atlas-04-day.jpg" alt="Painted folk-art mask sculpture" loading="lazy" />
+        <figcaption>09 — roadside folk art</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/atlas/atlas-01-day.jpg" alt="Colorful kuih sweets with an orchid" loading="lazy" />
+        <figcaption>10 — kuih, with orchid</figcaption>
+      </figure>
+    </div>
+    <p class="atlas-note">All photographs my own · © Poulami Ghosh · originals never published</p>
+  </div>
+</section>
+
 <!-- ===================== VIDEOS ===================== -->
 <section id="videos" class="wrap section">
-  <div class="eyebrow reveal"><span class="num">03</span> Walkthroughs <span class="bar"></span> Loom · coming soon</div>
+  <div class="eyebrow reveal"><span class="num">04</span> Walkthroughs <span class="bar"></span> Loom · coming soon</div>
   <div class="video-grid">
     <!-- EDIT: to embed a real Loom, see the "Add a Loom video" note -->
     <div class="video-card reveal"><div class="video-thumb"><div class="play"></div></div><div class="video-body"><div class="video-title">Claims Guard — full walkthrough</div><div class="video-meta">Loom · coming soon</div></div></div>
@@ -512,7 +608,7 @@ footer{border-top:1px solid var(--line);padding-block:34px;color:var(--ink-faint
 
 <!-- ===================== CONTACT ===================== -->
 <section id="contact" class="wrap section">
-  <div class="eyebrow reveal"><span class="num">04</span> Contact <span class="bar"></span></div>
+  <div class="eyebrow reveal"><span class="num">05</span> Contact <span class="bar"></span></div>
   <div class="contact-grid reveal">
     <div>
       <p class="contact-lead">Let's build something <span class="accent">trustworthy.</span></p>
