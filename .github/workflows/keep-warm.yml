@@ -1,0 +1,40 @@
+name: keep-warm
+
+# Keeps the free-tier Render demo(s) from cold-starting so a recruiter who
+# clicks a "Live" link never waits ~20-30s for the app to wake.
+#
+# Render free services spin down after ~15 min idle. GitHub's scheduler is
+# best-effort (runs can be delayed a few minutes under load), so each run
+# pings a few times spaced ~4 min apart to cover the gap between runs.
+#
+# Add more demos later by extending the `urls` list below.
+#
+# NOTE: GitHub disables scheduled workflows after 60 days with no repo
+# activity — pushing site updates (which you'll do anyway) keeps it alive.
+# You can also run it manually from the Actions tab (workflow_dispatch).
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"   # every ~10 min
+  workflow_dispatch:          # allow manual runs from the Actions tab
+
+permissions:
+  contents: read
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping demos
+        run: |
+          urls=(
+            "https://advisordesk.onrender.com/"
+          )
+          # 3 pings ~4 min apart smooths out GitHub's schedule jitter
+          for round in 1 2 3; do
+            for url in "${urls[@]}"; do
+              code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 60 --retry 2 "$url" || echo "000")
+              echo "round $round  $url -> HTTP $code"
+            done
+            [ "$round" -lt 3 ] && sleep 240 || true
+          done
