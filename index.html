@@ -227,7 +227,16 @@ nav{
 .card:hover::after{width:100%}
 .card.feat{grid-column:span 12;flex-direction:row;gap:30px;align-items:stretch;padding:30px}
 .card.span4{grid-column:span 4}
-@media(max-width:820px){.card,.card.feat,.card.span4{grid-column:span 12;flex-direction:column}}
+/* whole card is a tap target: stretch the real demo link over it (no nested <a>,
+   keeps the visible "Open demo ↗" affordance and its accessible label) */
+.card:has(.card-link:not(.muted)){cursor:pointer}
+.card-link:not(.muted)::before{content:"";position:absolute;inset:0;z-index:2}
+@media(max-width:820px){
+  .card,.card.feat,.card.span4{grid-column:span 12;flex-direction:column}
+  /* column layout: undo the row flex ratios so nothing gets clipped by overflow:hidden */
+  .card.feat .card-thumb{flex:0 0 auto;width:100%}
+  .card.feat .card-body{flex:0 0 auto}
+}
 
 .card-thumb{
   border-radius:12px;border:1px solid var(--line);
